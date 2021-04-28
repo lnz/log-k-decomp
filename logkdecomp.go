@@ -111,7 +111,7 @@ func main() {
 
 	// input flags
 	graphPath := flagSet.String("graph", "", "input (for format see hyperbench.dbai.tuwien.ac.at/downloads/manual.pdf)")
-	width := flagSet.Int("width", 0, "a positive, non-zero integer indicating the width of the GHD to search for")
+	width := flagSet.Int("width", 0, "a positive, non-zero integer indicating the width of the HD to search for")
 	exact := flagSet.Bool("exact", false, "Compute exact width (width flag ignored)")
 	approx := flagSet.Int("approx", 0, "Compute approximated width and set a timeout in seconds (width flag ignored)")
 
@@ -143,7 +143,7 @@ func main() {
 
 	// Output usage message if graph and width not specified
 	if parseError != nil || *graphPath == "" || (*width <= 0 && !*exact && *approx == 0) {
-		out := fmt.Sprint("Usage of logkdecomp:")
+		out := fmt.Sprint("Usage of log-k-decomp:")
 		fmt.Fprintln(os.Stderr, out)
 		flagSet.VisitAll(func(f *flag.Flag) {
 			if f.Name != "width" && f.Name != "graph" && f.Name != "exact" && f.Name != "approx" {
@@ -158,9 +158,23 @@ func main() {
 			fmt.Println("\t" + f.Usage)
 		})
 
+		fmt.Println("\nAlgorithm Choice: ")
+		flagSet.VisitAll(func(f *flag.Flag) {
+			if f.Name != "logk" && f.Name != "logkHybrid" {
+				return
+			}
+			s := fmt.Sprintf("%T", f.Value) // used to get type of flag
+			if s[6:len(s)-5] != "bool" {
+				fmt.Printf("  -%-10s \t<%s>\n", f.Name, s[6:len(s)-5])
+			} else {
+				fmt.Printf("  -%-10s \n", f.Name)
+			}
+			fmt.Println("\t" + f.Usage)
+		})
+
 		fmt.Println("\nOptional Arguments: ")
 		flagSet.VisitAll(func(f *flag.Flag) {
-			if f.Name == "width" || f.Name == "graph" || f.Name == "exact" || f.Name == "approx" {
+			if f.Name == "width" || f.Name == "graph" || f.Name == "exact" || f.Name == "approx" || f.Name == "logkHybrid" || f.Name == "logk" {
 				return
 			}
 			s := fmt.Sprintf("%T", f.Value) // used to get type of flag
