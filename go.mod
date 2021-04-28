@@ -1,6 +1,6 @@
-module github.com/cem-okulmus/logkdecomp
+module github.com/cem-okulmus/log-k-decomp
 
-go 1.12
+go 1.14
 
 require (
 	github.com/alecthomas/participle v0.3.0
