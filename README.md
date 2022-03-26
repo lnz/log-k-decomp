@@ -1,4 +1,8 @@
 # log-k-decomp
+[![](https://img.shields.io/github/v/tag/cem-okulmus/log-k-decomp?sort=semver)](https://github.com/cem-okulmus/log-k-decomp/releases/latest)
+[![Go Reference](https://pkg.go.dev/badge/github.com/cem-okulmus/log-k-decomp.svg)](https://pkg.go.dev/github.com/cem-okulmus/log-k-decomp)
+[![Go Report Card](https://goreportcard.com/badge/github.com/cem-okulmus/log-k-decomp)](https://goreportcard.com/report/github.com/cem-okulmus/log-k-decomp)
+
 log-k-decomp implements a novel parallel algorithm to compute Hypertree Decompositions based on the structural information of CQs or CSPs. This can then be used to evaluate them in provably polynomial time.
 
 
