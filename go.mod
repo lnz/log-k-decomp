@@ -1,4 +1,4 @@
-module log-k-decomp
+module github.com/cem-okulmus/log-k-decomp
 
 go 1.14
 
