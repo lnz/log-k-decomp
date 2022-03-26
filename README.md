@@ -1,5 +1,5 @@
 # log-k-decomp
-Log-K-Decomp implements parallel algorithm to compute Hypertree Decompositions based on the structural information of CQs or CSPs. This can then be used to evaluate them in provably polynomial time.
+Log-K-Decomp implements a novel parallel algorithm to compute Hypertree Decompositions based on the structural information of CQs or CSPs. This can then be used to evaluate them in provably polynomial time.
 
 
 ## How to build 
@@ -9,3 +9,8 @@ Command to produce exectuable: `go build`
 
 ## Using the command line tool
 Run `./log-k-decomp -h` to see currently supported command and options. Hypergraphs need to be encoded in HyperBench format, more info here: <http://hyperbench.dbai.tuwien.ac.at/downloads/manual.pdf>
+
+
+## Publication
+
+[[1]](https://arxiv.org/abs/2104.13793) G. Gottlob, M. Lanzinger, C. Okulmus, R. Pichler: Fast Parallel Hypertree Decompositions in Logarithmic Recursion Depth. accepted for PODS'22.
