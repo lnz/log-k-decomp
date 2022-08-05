@@ -133,8 +133,8 @@ func (l *LogKDecomp) findDecomp(H lib.Graph, Conn []int, allowedFull lib.Edges) 
 	// Set up iterator for child
 
 	genChild := lib.SplitCombin(allowed.Len(), l.K, runtime.GOMAXPROCS(-1), false)
-	parallelSearch := lib.Search{H: &H, Edges: &allowed, BalFactor: l.BalFactor, Generators: genChild}
-	pred := lib.BalancedCheck{}
+	parallelSearch := lib.ParallelSearch{H: &H, Edges: &allowed, BalFactor: l.BalFactor, Generators: genChild, Result: []int{}, ExhaustedSearch: false}
+	pred := lib.BalancedCheckFast{}
 	parallelSearch.FindNext(pred) // initial Search
 
 	// checks all possibles nodes in H, together with PARENT loops, it covers all parent-child pairings
@@ -185,7 +185,7 @@ CHILD:
 		// Set up iterator for parent
 		allowedParent := lib.FilterVertices(allowed, append(Conn, childλ.Vertices()...))
 		genParent := lib.SplitCombin(allowedParent.Len(), l.K, runtime.GOMAXPROCS(-1), false)
-		parentalSearch := lib.Search{H: &H, Edges: &allowedParent, BalFactor: l.BalFactor, Generators: genParent}
+		parentalSearch := lib.ParallelSearch{H: &H, Edges: &allowedParent, BalFactor: l.BalFactor, Generators: genParent, Result: []int{}, ExhaustedSearch: false}
 		predPar := lib.ParentCheck{Conn: Conn, Child: childλ.Vertices()}
 		parentalSearch.FindNext(predPar)
 		// parentFound := false
